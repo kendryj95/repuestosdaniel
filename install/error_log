@@ -1,0 +1,2 @@
+[21-Feb-2019 04:49:31 UTC] PHP Warning:  mysqli::__construct(): (28000/1045): Access denied for user 'mfpla359_factu'@'localhost' (using password: YES) in /home/ukemjd5r1cwf/public_html/mascor.com.ar/facturacion/install/install.php on line 257
+[21-Feb-2019 04:50:06 UTC] PHP Warning:  mysqli::__construct(): (28000/1045): Access denied for user 'mfpla359_factu'@'localhost' (using password: YES) in /home/ukemjd5r1cwf/public_html/mascor.com.ar/facturacion/install/install.php on line 257
