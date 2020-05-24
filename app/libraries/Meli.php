@@ -45,9 +45,9 @@ class Meli
         ];
 
         $datos = [
-            "title" => $data['name'],
+            "title" => $data['titulo_ml'],
             "category_id" => $data['category_ml'],
-            "price" => $this->sma->formatDecimal($data['price'], 2),
+            "price" => $this->sma->formatDecimal($data['priceml'], 2),
             "currency_id" => "ARS",
             "available_quantity" => intval($data['quantity']),
             "buying_mode" => "buy_it_now",
@@ -67,7 +67,7 @@ class Meli
         if (count($photos) > 0) {
             foreach ($photos as $photo) {
                 $datos['pictures'][] = [
-                    "source" => "http://sd-1630212-h00003.ferozo.net/nuevafacturacion/assets/uploads/" . $photo
+                    "source" => "https:www.repuestosdaniel.com/nuevafacturacion/assets/uploads/" . $photo
                 ];
             }
         }

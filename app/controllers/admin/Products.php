@@ -398,6 +398,7 @@ class Products extends MY_Controller
                 'code' => $this->input->post('code'),
                 'barcode_symbology' => $this->input->post('barcode_symbology'),
                 'name' => $this->input->post('name'),
+                'titulo_ml' => $this->input->post('titulo_ml'),
                 'type' => $this->input->post('type'),
                 'brand' => $this->input->post('brand'),
                 'brand2' => $this->input->post('brand2'),
@@ -450,6 +451,7 @@ class Products extends MY_Controller
                 'hide' => $this->input->post('hide') ? $this->input->post('hide') : 0,
                 'mayorista' => $this->input->post('mayorista') ? $this->input->post('mayorista') : 0,
                 'second_name' => $this->input->post('second_name'),
+                'recargo_ml' => $this->input->post('recargo_ml'),
                 'category_ml' => $this->input->post('category_ml') ? $this->input->post('category_ml') : null, # AÑADIDO POR KENDRY
                 'brand_ml' => $this->input->post('brand_ml') ? $this->input->post('brand_ml') : null # AÑADIDO POR KENDRY
             );
@@ -843,6 +845,7 @@ class Products extends MY_Controller
             $data = array('code' => $this->input->post('code'),
                 'barcode_symbology' => $this->input->post('barcode_symbology'),
                 'name' => $this->input->post('name'),
+                'titulo_ml' => $this->input->post('titulo_ml'),
                 'type' => $this->input->post('type'),
                 'brand' => $this->input->post('brand'),
                 'brand2' => $this->input->post('brand2'),
@@ -895,6 +898,7 @@ class Products extends MY_Controller
                 'mayorista' => $this->input->post('mayorista') ? $this->input->post('mayorista') : 0,
                 'hide_pos' => $this->input->post('hide_pos') ? $this->input->post('hide_pos') : 0,
                 'second_name' => $this->input->post('second_name'),
+                'recargo_ml' => $this->input->post('recargo_ml'),
             );
             $warehouse_qty = NULL;
             $product_attributes = NULL;
@@ -2794,22 +2798,14 @@ class Products extends MY_Controller
 
         foreach ($products as $item) {
             $ml = $this->meli->getProductById($item->product_ml);
-            if (intval($item->quantity) > $ml['available_quantity']) {
-                $data['quantity'] = $ml['available_quantity'];
-                $this->products_model->updateProductDiscounts($item->id, $data);
-                $success = true;
-            } elseif (intval($item->quantity) < $ml['available_quantity']) {
+            if (intval($item->quantity) != $ml['available_quantity']) {
                 $data['available_quantity'] = intval($item->quantity);
                 $this->meli->updateProduct($data,$item->product_ml,$token);
                 $success = true;
             }
 
-            if (intval($item->price) > $ml['price']) {
-                $data['price'] = $this->sma->formatDecimal($ml['price']);
-                $this->products_model->updateProductDiscounts($item->id, $data);
-                $success = true;
-            } elseif (intval($item->price) < $ml['price']) {
-                $data['price'] = $this->sma->formatDecimal($item->price,2);
+            if (intval($item->priceml) != $ml['price']) {
+                $data['price'] = $this->sma->formatDecimal($item->priceml,2);
                 $this->meli->updateProduct($data,$item->product_ml,$token);
                 $success = true;
             }

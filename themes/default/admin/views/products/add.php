@@ -33,6 +33,21 @@ if (!empty($variants)) {
                 {id: '', text: '<?= lang('select_categoryml3_to_load') ?>'}
             ]
         });
+        $("#category_ml_5").select2("destroy").empty().attr("placeholder", "<?= lang('select_categoryml4_to_load') ?>").select2({
+            placeholder: "<?= lang('select_categoryml4_to_load') ?>", minimumResultsForSearch: 7, data: [
+                {id: '', text: '<?= lang('select_categoryml4_to_load') ?>'}
+            ]
+        });
+        $("#category_ml_6").select2("destroy").empty().attr("placeholder", "<?= lang('select_categoryml5_to_load') ?>").select2({
+            placeholder: "<?= lang('select_categoryml5_to_load') ?>", minimumResultsForSearch: 7, data: [
+                {id: '', text: '<?= lang('select_categoryml5_to_load') ?>'}
+            ]
+        });
+        $("#category_ml_7").select2("destroy").empty().attr("placeholder", "<?= lang('select_categoryml6_to_load') ?>").select2({
+            placeholder: "<?= lang('select_categoryml6_to_load') ?>", minimumResultsForSearch: 7, data: [
+                {id: '', text: '<?= lang('select_categoryml6_to_load') ?>'}
+            ]
+        });
         $("#brand_ml").select2("destroy").empty().attr("placeholder", "<?= lang('select_categoryml_to_load') ?>").select2({
             placeholder: "<?= lang('select_categoryml_to_load') ?>", minimumResultsForSearch: 7, data: [
                 {id: '', text: '<?= lang('select_categoryml_to_load') ?>'}
@@ -112,6 +127,10 @@ if (!empty($variants)) {
                     <div class="form-group all">
                         <?= lang("product_name", "name") ?>
                         <?= form_input('name', (isset($_POST['name']) ? $_POST['name'] : ($product ? $product->name : '')), 'class="form-control gen_slug" id="name" required="required"'); ?>
+                    </div>
+                    <div class="form-group all">
+                        <?= lang("titulo_ml", "titulo_ml") ?>
+                        <?= form_input('titulo_ml', (isset($_POST['titulo_ml']) ? $_POST['titulo_ml'] : ($product ? $product->titulo_ml : '')), 'class="form-control gen_slug" id="titulo_ml" required="required"'); ?>
                     </div>
                     <div class="form-group all">
                         <?= lang("product_code", "code") ?>
@@ -220,11 +239,29 @@ if (!empty($variants)) {
                             echo form_input('category_ml_3', '', 'class="form-control" id="category_ml_3" onchange="categoriesML(this.value,\'category_ml_4\',this.id, 3)" placeholder="' . lang("select_categoryml2_to_load") . '"');
                             ?>
                         </div>
-                        
                         <div class="form-group all">
                             <?= lang("category_ml_4", "category_ml_4") ?>
                             <?php
-                            echo form_input('category_ml_4', '', 'class="form-control" id="category_ml_4" onchange="loadBrandsML(this.value)" placeholder="' . lang("select_categoryml3_to_load") . '"');
+                            echo form_input('category_ml_4', '', 'class="form-control" id="category_ml_4" onchange="categoriesML(this.value,\'category_ml_5\',this.id, 4)" placeholder="' . lang("select_categoryml3_to_load") . '"');
+                            ?>
+                        </div>
+                        <div class="form-group all">
+                            <?= lang("category_ml_5", "category_ml_5") ?>
+                            <?php
+                            echo form_input('category_ml_5', '', 'class="form-control" id="category_ml_5" onchange="categoriesML(this.value,\'category_ml_6\',this.id, 5)" placeholder="' . lang("select_categoryml4_to_load") . '"');
+                            ?>
+                        </div>
+                        <div class="form-group all">
+                            <?= lang("category_ml_6", "category_ml_6") ?>
+                            <?php
+                            echo form_input('category_ml_6', '', 'class="form-control" id="category_ml_6" onchange="categoriesML(this.value,\'category_ml_7\',this.id, 6)" placeholder="' . lang("select_categoryml5_to_load") . '"');
+                            ?>
+                        </div>
+                        
+                        <div class="form-group all">
+                            <?= lang("category_ml_7", "category_ml_7") ?>
+                            <?php
+                            echo form_input('category_ml_7', '', 'class="form-control" id="category_ml_7" onchange="loadBrandsML(this.value)" placeholder="' . lang("select_categoryml6_to_load") . '"');
                             ?>
                         </div>
                         
@@ -584,6 +621,15 @@ if (!empty($variants)) {
                             <div class="form-group all">
                                 <?= lang('Recargo VR 2', 'cf8') ?>
                                 <?= form_input('cf8', (isset($_POST['cf8']) ? $_POST['cf8'] : ($product ? $product->cf8 : '')), 'class="form-control tip" id="cf8"') ?>
+                            </div>
+                        </div>
+                    </div>
+                    <br><br><br>
+                    <div class="row" id="extras-con">
+                        <div class="col-md-4">
+                            <div class="form-group all">
+                                <?= lang('Recargo ML', 'recargo_ml') ?>
+                                <?= form_input('recargo_ml', (isset($_POST['recargo_ml']) ? $_POST['recargo_ml'] : ($product ? $product->recargo_ml : '')), 'class="form-control tip" id="recargo_ml"') ?>
                             </div>
                         </div>
                     </div>
@@ -1254,6 +1300,57 @@ foreach ($second_names as $key => $name) {
                 $("#category_ml_4").select2("destroy").empty().attr("placeholder", "<?= lang('select_categoryml3_to_load') ?>").select2({
                     placeholder: "<?= lang('select_categoryml3_to_load') ?>", minimumResultsForSearch: 7, data: [
                         {id: '', text: '<?= lang('select_categoryml3_to_load') ?>'}
+                    ]
+                });
+                $("#category_ml_5").select2("destroy").empty().attr("placeholder", "<?= lang('select_categoryml4_to_load') ?>").select2({
+                    placeholder: "<?= lang('select_categoryml4_to_load') ?>", minimumResultsForSearch: 7, data: [
+                        {id: '', text: '<?= lang('select_categoryml4_to_load') ?>'}
+                    ]
+                });
+                $("#category_ml_6").select2("destroy").empty().attr("placeholder", "<?= lang('select_categoryml5_to_load') ?>").select2({
+                    placeholder: "<?= lang('select_categoryml5_to_load') ?>", minimumResultsForSearch: 7, data: [
+                        {id: '', text: '<?= lang('select_categoryml5_to_load') ?>'}
+                    ]
+                });
+                $("#category_ml_7").select2("destroy").empty().attr("placeholder", "<?= lang('select_categoryml6_to_load') ?>").select2({
+                    placeholder: "<?= lang('select_categoryml6_to_load') ?>", minimumResultsForSearch: 7, data: [
+                        {id: '', text: '<?= lang('select_categoryml6_to_load') ?>'}
+                    ]
+                });
+                break;
+            case 4:
+                $("#category_ml_5").select2("destroy").empty().attr("placeholder", "<?= lang('select_categoryml4_to_load') ?>").select2({
+                    placeholder: "<?= lang('select_categoryml4_to_load') ?>", minimumResultsForSearch: 7, data: [
+                        {id: '', text: '<?= lang('select_categoryml4_to_load') ?>'}
+                    ]
+                });
+                $("#category_ml_6").select2("destroy").empty().attr("placeholder", "<?= lang('select_categoryml5_to_load') ?>").select2({
+                    placeholder: "<?= lang('select_categoryml5_to_load') ?>", minimumResultsForSearch: 7, data: [
+                        {id: '', text: '<?= lang('select_categoryml5_to_load') ?>'}
+                    ]
+                });
+                $("#category_ml_7").select2("destroy").empty().attr("placeholder", "<?= lang('select_categoryml6_to_load') ?>").select2({
+                    placeholder: "<?= lang('select_categoryml6_to_load') ?>", minimumResultsForSearch: 7, data: [
+                        {id: '', text: '<?= lang('select_categoryml6_to_load') ?>'}
+                    ]
+                });
+                break;
+            case 5:
+                $("#category_ml_6").select2("destroy").empty().attr("placeholder", "<?= lang('select_categoryml5_to_load') ?>").select2({
+                    placeholder: "<?= lang('select_categoryml5_to_load') ?>", minimumResultsForSearch: 7, data: [
+                        {id: '', text: '<?= lang('select_categoryml5_to_load') ?>'}
+                    ]
+                });
+                $("#category_ml_7").select2("destroy").empty().attr("placeholder", "<?= lang('select_categoryml6_to_load') ?>").select2({
+                    placeholder: "<?= lang('select_categoryml6_to_load') ?>", minimumResultsForSearch: 7, data: [
+                        {id: '', text: '<?= lang('select_categoryml6_to_load') ?>'}
+                    ]
+                });
+                break;
+            case 6:
+                $("#category_ml_7").select2("destroy").empty().attr("placeholder", "<?= lang('select_categoryml6_to_load') ?>").select2({
+                    placeholder: "<?= lang('select_categoryml6_to_load') ?>", minimumResultsForSearch: 7, data: [
+                        {id: '', text: '<?= lang('select_categoryml6_to_load') ?>'}
                     ]
                 });
                 break;

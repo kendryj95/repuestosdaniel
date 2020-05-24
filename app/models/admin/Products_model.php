@@ -119,7 +119,7 @@ class Products_model extends CI_Model
 
     public function getProductDetails($id)
     {
-        $this->db->select($this->db->dbprefix('products') . '.code, ' . $this->db->dbprefix('products') . '.name, ' . $this->db->dbprefix('categories') . '.code as category_code, cost, price, pricevr, quantity, alert_quantity')
+        $this->db->select($this->db->dbprefix('products') . '.code, ' . $this->db->dbprefix('products') . '.name, ' . $this->db->dbprefix('categories') . '.code as category_code, cost, price, pricevr, priceml, quantity, alert_quantity')
             ->join('categories', 'categories.id=products.category_id', 'left');
         $q = $this->db->get_where('products', array('products.id' => $id), 1);
         if ($q->num_rows() > 0) {
@@ -370,7 +370,7 @@ class Products_model extends CI_Model
                 $product = $this->getProductByID($product_id);
                 $data['category_ml'] = $category_ml;
                 $data['brand_ml'] = $brand_ml;
-                $data['price'] = $product->price;
+                $data['priceml'] = $product->priceml;
                 $ml = $this->meli->publish($access_token,$data,$photos);
                 if (!isset($ml['id'])) {
                     var_dump($ml);
